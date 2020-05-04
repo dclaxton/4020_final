@@ -1,4 +1,4 @@
-package edu.apsu.csci.a4020_final;
+package edu.apsu.csci.final_4020;
 
 import org.junit.Test;
 

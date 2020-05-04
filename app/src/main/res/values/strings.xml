@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">4020_final</string>
+    <string name="app_name">Impossible Quiz</string>
+    <string name="welcome_msg">Welcome to the Impossible Quiz!</string>
+    <string name="quiz_logo">Quiz logo</string>
+    <string name="easy">Easy</string>
+    <string name="normal">Normal</string>
+    <string name="hard">Hard</string>
+    <string name="exit">Exit</string>
+    <string name="credits">Credits</string>
+    <string name="play">Play</string>
+    <string name="high_scores">High Scores</string>
+
+    <string name="credit_info">Developers: Daniel Davis, Dalton Claxton, Peyton White
+        \n\nSounds: Link here\n\nImages: Link here\n\nQuiz API: Link here
+    </string>
 </resources>
