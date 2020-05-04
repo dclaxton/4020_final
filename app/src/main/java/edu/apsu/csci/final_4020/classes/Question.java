@@ -11,6 +11,7 @@ public class Question {
     private int id;
 
     private String question;
+    private String category;
     private String answer;
 
     public Question(int difficulty) {
@@ -19,6 +20,10 @@ public class Question {
 
     public String getQuestion() {
         return question;
+    }
+
+    public String getCategory() {
+        return category;
     }
 
     public String getAnswer() {
@@ -31,6 +36,10 @@ public class Question {
 
     public void setAnswer(String answer) {
         this.answer = answer;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public void setDifficulty(int difficulty) {

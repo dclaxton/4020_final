@@ -13,4 +13,9 @@
     <string name="credit_info">Developers: Daniel Davis, Dalton Claxton, Peyton White
         \n\nSounds: Link here\n\nImages: Link here\n\nQuiz API: Link here
     </string>
+    <string name="question">Question</string>
+    <string name="answer">Answer</string>
+    <string name="menu">Menu</string>
+    <string name="submit">Submit</string>
+    <string name="how_far_can_you_go">How far can you go?</string>
 </resources>
