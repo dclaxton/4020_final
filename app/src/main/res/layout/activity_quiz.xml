@@ -80,6 +80,15 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/category_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textSize="17sp"
+                    android:textColor="@color/black"
+                    android:text="@string/category" />
+
+                <TextView
                     android:id="@+id/question_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

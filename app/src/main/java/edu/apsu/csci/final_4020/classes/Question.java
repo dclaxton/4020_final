@@ -17,6 +17,7 @@ public class Question {
     public Question(int difficulty) {
         this.difficulty = difficulty;
         this.question = "[Test] What is 1 + 1?";
+        this.category = "Math";
         this.answer = "2";
         this.id = 1;
     }

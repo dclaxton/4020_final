@@ -44,7 +44,7 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (((EditText) findViewById(R.id.answer_edit_text)).getText().toString().equals(question.getAnswer())) {
-                    // Add notification / sound for correct answer
+                    // Add notification + sound for correct answer
 
                     questions.add(question);
                     startQuiz();
@@ -58,21 +58,24 @@ public class QuizActivity extends AppCompatActivity {
     public void startQuiz() {
         question = new Question(difficulty);
 
-        // Results in infinite loop unless a new question is generated every time
         for (Question oldQuestion : questions) {
             if (oldQuestion.getID() == question.getID()) {
+                // Results in infinite loop unless a new question is generated every time
                 //startQuiz();
             }
         }
 
+        // Wipe the Edit Text, increment Question counter, display new Question, display new Category
         ((EditText) findViewById(R.id.answer_edit_text)).getText().clear();
         ((TextView) findViewById(R.id.question_header_tv)).setText(
                 getString(R.string.question, questions.size() + 1));
         ((TextView) findViewById(R.id.question_tv)).setText(question.getQuestion());
+        ((TextView) findViewById(R.id.category_tv)).setText(getString(
+                R.string.category, question.getCategory()));
     }
 
     public void endQuiz(int score) {
-        // Add notification / sound for wrong answer
+        // Add notification + sound for wrong answer
 
         alert = new Alert(this);
         alert.setPositiveButton("Restart", new DialogInterface.OnClickListener() {
