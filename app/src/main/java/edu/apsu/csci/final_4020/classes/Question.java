@@ -16,6 +16,9 @@ public class Question {
 
     public Question(int difficulty) {
         this.difficulty = difficulty;
+        this.question = "[Test] What is 1 + 1?";
+        this.answer = "2";
+        this.id = 1;
     }
 
     public String getQuestion() {
@@ -28,6 +31,14 @@ public class Question {
 
     public String getAnswer() {
         return answer;
+    }
+
+    public int getDifficulty() {
+        return difficulty;
+    }
+
+    public int getID() {
+        return id;
     }
 
     public void setQuestion(String question) {
@@ -44,5 +55,9 @@ public class Question {
 
     public void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
+    }
+
+    public void setID(int id) {
+        this.id = id;
     }
 }

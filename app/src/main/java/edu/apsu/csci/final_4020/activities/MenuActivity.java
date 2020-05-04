@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RadioGroup;
 
 import edu.apsu.csci.final_4020.R;
 import edu.apsu.csci.final_4020.listeners.GoToActivity;
@@ -23,10 +24,17 @@ public class MenuActivity extends AppCompatActivity {
         MenuActivity.isOpen = true;
         setContentView(R.layout.activity_main_menu);
 
+        // Add background music
+
+        int difficultyId = ((RadioGroup) findViewById(R.id.difficulty_rg)).getCheckedRadioButtonId();
+
         // Menu buttons
-        findViewById(R.id.play_button).setOnClickListener(new GoToActivity(this, QuizActivity.class));
-        findViewById(R.id.highscore_button).setOnClickListener(new GoToActivity(this, HighScoreActivity.class));
-        findViewById(R.id.credits_button).setOnClickListener(new GoToActivity(this, CreditsActivity.class));
+        findViewById(R.id.play_button).setOnClickListener(
+                new GoToActivity(this, QuizActivity.class, difficultyId));
+        findViewById(R.id.highscore_button).setOnClickListener(
+                new GoToActivity(this, HighScoreActivity.class));
+        findViewById(R.id.credits_button).setOnClickListener(
+                new GoToActivity(this, CreditsActivity.class));
     }
 
     // Exit button
