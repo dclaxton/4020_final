@@ -4,7 +4,7 @@
     Description: A simple implementation of an 'impossible' quiz
  */
 
-package edu.apsu.csci.final_4020.classes;
+package edu.apsu.csci.final_4020.db;
 
-public class Question {
+public class DbDataSource {
 }

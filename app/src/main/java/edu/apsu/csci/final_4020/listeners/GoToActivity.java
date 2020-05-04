@@ -1,7 +1,7 @@
 /*
     Authors: Daniel Davis, Dalton Claxton, Peyton White
-    Date: 30 March 2020
-    Description: A simple calorie counting app using API data from the US Department of Agriculture
+    Date: 7 May 2020
+    Description: A simple implementation of an 'impossible' quiz
  */
 
 package edu.apsu.csci.final_4020.listeners;
