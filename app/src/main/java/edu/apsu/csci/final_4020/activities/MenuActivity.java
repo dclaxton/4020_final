@@ -13,10 +13,13 @@ import android.view.View;
 import android.widget.RadioGroup;
 
 import edu.apsu.csci.final_4020.R;
+import edu.apsu.csci.final_4020.classes.Sound;
 import edu.apsu.csci.final_4020.listeners.GoToActivity;
 
 public class MenuActivity extends AppCompatActivity {
     public static boolean isOpen = false;
+
+    private Sound sound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +27,7 @@ public class MenuActivity extends AppCompatActivity {
         MenuActivity.isOpen = true;
         setContentView(R.layout.activity_main_menu);
 
-        // Add background music
-
+        sound = new Sound(this);
         int difficultyId = ((RadioGroup) findViewById(R.id.difficulty_rg)).getCheckedRadioButtonId();
 
         // Menu buttons
@@ -40,6 +42,18 @@ public class MenuActivity extends AppCompatActivity {
     // Exit button
     public void onExitButton(final View view) {
         finish();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sound.stopMusic();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sound.playMusic(R.raw.menu);
     }
 
     @Override
