@@ -9,6 +9,7 @@ package edu.apsu.csci.final_4020.activities;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,13 +20,14 @@ import java.util.ArrayList;
 
 import edu.apsu.csci.final_4020.R;
 import edu.apsu.csci.final_4020.classes.Alert;
+import edu.apsu.csci.final_4020.classes.QueryJSON;
 import edu.apsu.csci.final_4020.classes.Question;
 import edu.apsu.csci.final_4020.listeners.GoToActivityClosingPrevious;
 
 public class QuizActivity extends AppCompatActivity {
     private Question question;
     private ArrayList<Question> questions;
-
+    private QueryJSON query;
     private Alert alert;
     private int difficulty;
 
@@ -33,7 +35,7 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-
+        query = new QueryJSON(getApplicationContext());
         // Add background music
         difficulty = getIntent().getIntExtra("Difficulty", 0);
         questions = new ArrayList<>();
@@ -56,22 +58,23 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void startQuiz() {
-        question = new Question(difficulty);
-
-        for (Question oldQuestion : questions) {
+        query.execute();
+        /*for (Question oldQuestion : questions) {
             if (oldQuestion.getID() == question.getID()) {
-                // Results in infinite loop unless a new question is generated every time
-                //startQuiz();
+                query.execute();
             }
-        }
-
+        }*/
+        query.setCallback(new QueryJSON.JSONCallBack() {
+            @Override
+            public void onResponse(Question q) {
+                question = q;
+                ((EditText) findViewById(R.id.answer_edit_text)).getText().clear();
+                ((TextView) findViewById(R.id.question_header_tv)).setText(getString(R.string.question, questions.size() + 1));
+                ((TextView) findViewById(R.id.question_tv)).setText(q.getQuestion());
+                ((TextView) findViewById(R.id.category_tv)).setText(getString(R.string.category, q.getCategory()));
+            }
+        });
         // Wipe the Edit Text, increment Question counter, display new Question, display new Category
-        ((EditText) findViewById(R.id.answer_edit_text)).getText().clear();
-        ((TextView) findViewById(R.id.question_header_tv)).setText(
-                getString(R.string.question, questions.size() + 1));
-        ((TextView) findViewById(R.id.question_tv)).setText(question.getQuestion());
-        ((TextView) findViewById(R.id.category_tv)).setText(getString(
-                R.string.category, question.getCategory()));
     }
 
     public void endQuiz(int score) {
@@ -95,7 +98,7 @@ public class QuizActivity extends AppCompatActivity {
 
         alert.backToMenu(this);
         // High score comes from DB
-        alert.showScores(score, "From DB" );
+        alert.showScores(score, "0" );
     }
 
 }
