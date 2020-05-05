@@ -14,12 +14,16 @@ public class Question {
     private String category;
     private String answer;
 
-    public Question(int difficulty) {
+    public Question(int difficulty, String question, String category, String answer, int id) {
         this.difficulty = difficulty;
-        this.question = "[Test] What is 1 + 1?";
-        this.category = "Math";
-        this.answer = "2";
-        this.id = 1;
+        this.question = question;
+        this.category = category;
+        this.answer = answer;
+        this.id = id;
+    }
+    public Question() {
+        //default constructor that does nothing
+        this.question = "";
     }
 
     public String getQuestion() {
