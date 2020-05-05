@@ -17,6 +17,8 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 public class QueryJSON extends AsyncTask<Void,Void,Question> {
+
+    //Interface to implement a callback to get data from thread to MainUIThread
     public interface JSONCallBack {
         void onResponse(Question q);
     }
@@ -37,7 +39,7 @@ public class QueryJSON extends AsyncTask<Void,Void,Question> {
 
     @Override
     protected Question doInBackground(Void... voids) {
-        Question question = new Question();
+        Question question;
         try {
             // Establish the connection
             URL url = new URL(API_URL);
@@ -48,38 +50,33 @@ public class QueryJSON extends AsyncTask<Void,Void,Question> {
             InputStreamReader isr = new InputStreamReader(is);
             BufferedReader br = new BufferedReader(isr);
 
+            //Build the raw string of the returned JSON
             StringBuilder jsonData = new StringBuilder();
             String line;
             while ((line = br.readLine()) != null) {
                 jsonData.append(line);
             }
 
+            //Removes the [ ] on the front and back of the raw string
             jsonData.deleteCharAt(0).deleteCharAt(jsonData.length() - 1);
+            //Build the raw string into a JSONObject that we can work with
             JSONObject reader = new JSONObject(jsonData.toString());
-            question.setID(reader.getInt("id"));
-            question.setQuestion(reader.getString("question"));
-            question.setAnswer(reader.getString("answer"));
-            question.setDifficulty(reader.getInt("value"));
 
-            //TODO: Fix populating Category from JSON response
+            //Category info is a nested JSONObject within the main JSONObject
+            JSONObject categories = reader.getJSONObject("category");
 
-            JSONArray items = reader.getJSONArray("category");
-            Log.i("RESPONSE", items.toString());
-            String category;
-            for(int i = 0; i < items.length(); i++) {
-                JSONObject item = items.getJSONObject(i);
-                category = item.getString("title");
-                Log.i("RESPONSE", category);
-                question.setCategory(category);
-            }
-
+            //Build our Question object to return back
+            question = new Question(reader.getInt("value"), reader.getString("question"), categories.getString("title"),
+                    reader.getString("answer"), reader.getInt("id"));
             connection.disconnect();
+            return question;
         } catch (IOException | JSONException e){
             e.printStackTrace();
         }
-        return question;
+        return null;
     }
 
+    //call our callback function after the thread is done executing
     @Override
     protected void onPostExecute(Question question) {
         callback.onResponse(question);
