@@ -25,7 +25,7 @@ public class HighScoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_highscores);
 
 
-        
+
 
     }
 
