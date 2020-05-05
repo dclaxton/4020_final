@@ -8,29 +8,36 @@ package edu.apsu.csci.final_4020.listeners;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
+import android.widget.RadioGroup;
+
+import edu.apsu.csci.final_4020.R;
 
 public class GoToActivity implements View.OnClickListener {
     Activity fromActivity;
     private Class toActivityClass;
-    private int intExtra;
+    private RadioGroup rg;
 
     public GoToActivity(Activity fromActivity, Class<? extends Activity> toActivityClass) {
         this.fromActivity = fromActivity;
         this.toActivityClass = toActivityClass;
+        this.rg = null;
     }
 
-    public GoToActivity(Activity fromActivity, Class<? extends Activity> toActivityClass, int intExtra) {
+    public GoToActivity(Activity fromActivity, Class<? extends Activity> toActivityClass, RadioGroup rg) {
         this.fromActivity = fromActivity;
         this.toActivityClass = toActivityClass;
-        this.intExtra = intExtra;
+        this.rg = rg;
     }
 
     // Passes an intent from one activity to another
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(fromActivity, toActivityClass);
-        intent.putExtra("Difficulty", intExtra);
+        if (rg != null) {
+            intent.putExtra("Difficulty", rg.getCheckedRadioButtonId());
+        }
         fromActivity.startActivity(intent);
     }
 }

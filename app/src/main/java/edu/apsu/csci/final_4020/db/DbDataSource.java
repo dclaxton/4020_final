@@ -15,8 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DbDataSource {
-
-
     private SQLiteDatabase database;
     private MySqlLiteHelper databaseHelper;
 

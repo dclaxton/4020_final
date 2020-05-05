@@ -11,6 +11,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
+import edu.apsu.csci.final_4020.activities.MenuActivity;
+import edu.apsu.csci.final_4020.listeners.GoToActivity;
+
 public class Alert {
     private AlertDialog.Builder aBuilder;
     private AlertDialog ad;
@@ -20,9 +23,9 @@ public class Alert {
         ad = null;
     }
 
-    public void showScores(int score, String highScore) {
+    public void showScores(String answer, int score, String highScore) {
         aBuilder.setTitle("Game Over");
-        aBuilder.setMessage("Score: " + score + "\nHigh Score: " + highScore);
+        aBuilder.setMessage("Answer: " + answer + "\nScore: " + score + "\nHigh Score: " + highScore);
 
         buildDialog();
     }

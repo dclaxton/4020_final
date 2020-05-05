@@ -9,6 +9,7 @@ package edu.apsu.csci.final_4020.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.RadioGroup;
 
@@ -28,11 +29,10 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
 
         sound = new Sound(this);
-        int difficultyId = ((RadioGroup) findViewById(R.id.difficulty_rg)).getCheckedRadioButtonId();
 
         // Menu buttons
         findViewById(R.id.play_button).setOnClickListener(
-                new GoToActivity(this, QuizActivity.class, difficultyId));
+                new GoToActivity(this, QuizActivity.class, ((RadioGroup) findViewById(R.id.difficulty_rg))));
         findViewById(R.id.highscore_button).setOnClickListener(
                 new GoToActivity(this, HighScoreActivity.class));
         findViewById(R.id.credits_button).setOnClickListener(
