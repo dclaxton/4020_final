@@ -114,18 +114,13 @@ public class QuizActivity extends AppCompatActivity {
                     if (!q.getDifficulty().equals(difficulty)) {
                         startQuiz();
                     } else {
+                        question = q;
                         // Wipe the Edit Text, increment Question counter, display new Question, display new Category
                         ((EditText) findViewById(R.id.answer_edit_text)).getText().clear();
                         ((EditText) findViewById(R.id.answer_edit_text)).setHint(q.getAnswer().replaceAll("[^-\\s]", "_ "));
                         ((TextView) findViewById(R.id.question_header_tv)).setText(getString(R.string.question, questions.size() + 1));
                         ((TextView) findViewById(R.id.question_tv)).setText(q.getQuestion());
                         ((TextView) findViewById(R.id.category_tv)).setText(getString(R.string.category, q.getCategory()));
-
-                        // Need to find a way to get data from the question on this thread to the question in the main thread
-                        //question.setAnswer(q.getAnswer());
-                        //question.setQuestion(q.getQuestion());
-                        //question.setCategory(q.getCategory());
-                        //question.setDifficulty(q.getDifficulty());
                     }
                 }
             }
