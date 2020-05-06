@@ -7,14 +7,14 @@
 package edu.apsu.csci.final_4020.classes;
 
 public class Question {
-    private int difficulty;
     private int id;
 
     private String question;
     private String category;
     private String answer;
+    private String difficulty;
 
-    public Question(int difficulty, String question, String category, String answer, int id) {
+    public Question(String difficulty, String question, String category, String answer, int id) {
         this.difficulty = difficulty;
         this.question = question;
         this.category = category;
@@ -38,7 +38,7 @@ public class Question {
         return answer;
     }
 
-    public int getDifficulty() {
+    public String getDifficulty() {
         return difficulty;
     }
 
@@ -58,7 +58,7 @@ public class Question {
         this.category = category;
     }
 
-    public void setDifficulty(int difficulty) {
+    public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
     }
 

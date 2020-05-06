@@ -111,32 +111,22 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onResponse(Question q) {
                 if (q != null) {
-                    switch (difficulty) {
-                        case "EASY":
-                            if (q.getDifficulty() > 300) {
-                                startQuiz();
-                            }
-                            break;
-                        case "NORMAL":
-                            if (q.getDifficulty() < 400 || q.getDifficulty() > 600) {
-                                startQuiz();
-                            }
-                            break;
-                        case "HARD":
-                            if (q.getDifficulty() < 700) {
-                                startQuiz();
-                            }
-                            break;
+                    if (!q.getDifficulty().equals(difficulty)) {
+                        startQuiz();
+                    } else {
+                        // Wipe the Edit Text, increment Question counter, display new Question, display new Category
+                        ((EditText) findViewById(R.id.answer_edit_text)).getText().clear();
+                        ((EditText) findViewById(R.id.answer_edit_text)).setHint(q.getAnswer().replaceAll("[^-\\s]", "_ "));
+                        ((TextView) findViewById(R.id.question_header_tv)).setText(getString(R.string.question, questions.size() + 1));
+                        ((TextView) findViewById(R.id.question_tv)).setText(q.getQuestion());
+                        ((TextView) findViewById(R.id.category_tv)).setText(getString(R.string.category, q.getCategory()));
+
+                        // Need to find a way to get data from the question on this thread to the question in the main thread
+                        //question.setAnswer(q.getAnswer());
+                        //question.setQuestion(q.getQuestion());
+                        //question.setCategory(q.getCategory());
+                        //question.setDifficulty(q.getDifficulty());
                     }
-
-                    question = q;
-
-                    // Wipe the Edit Text, increment Question counter, display new Question, display new Category
-                    ((EditText) findViewById(R.id.answer_edit_text)).getText().clear();
-                    ((EditText) findViewById(R.id.answer_edit_text)).setHint(q.getAnswer().replaceAll("[^-\\s]", "_ "));
-                    ((TextView) findViewById(R.id.question_header_tv)).setText(getString(R.string.question, questions.size() + 1));
-                    ((TextView) findViewById(R.id.question_tv)).setText(q.getQuestion());
-                    ((TextView) findViewById(R.id.category_tv)).setText(getString(R.string.category, q.getCategory()));
                 }
             }
         });

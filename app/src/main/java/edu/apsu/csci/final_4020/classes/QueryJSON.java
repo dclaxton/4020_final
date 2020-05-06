@@ -66,8 +66,20 @@ public class QueryJSON extends AsyncTask<Void,Void,Question> {
             // Category info is a nested JSONObject within the main JSONObject
             JSONObject categories = reader.getJSONObject("category");
 
+            String difficulty;
+            int value = reader.getInt("value");
+            if (value > 300) {
+                if (value > 600) {
+                    difficulty = "HARD";
+                } else {
+                    difficulty = "NORMAL";
+                }
+            } else {
+                difficulty = "EASY";
+            }
+
             // Build our Question object to return back
-            question = new Question(reader.getInt("value"), reader.getString("question"), categories.getString("title"),
+            question = new Question(difficulty, reader.getString("question"), categories.getString("title"),
                     reader.getString("answer"), reader.getInt("id"));
 
             connection.disconnect();
