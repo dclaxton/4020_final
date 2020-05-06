@@ -49,7 +49,7 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (((EditText) findViewById(R.id.answer_edit_text)).getText().toString()
-                        .toUpperCase().equals(question.getAnswer().replaceAll("/[^-\\sa-zA-Z0-9 ]/g", "").toUpperCase())) {
+                        .toUpperCase().equals(question.getAnswer().replaceAll("/[^-\\sa-zA-Z0-9 ]", "").toUpperCase())) {
                     sound.playSound(R.raw.correct_answer);
 
                     questions.add(question);
@@ -133,7 +133,7 @@ public class QuizActivity extends AppCompatActivity {
 
                     // Wipe the Edit Text, increment Question counter, display new Question, display new Category
                     ((EditText) findViewById(R.id.answer_edit_text)).getText().clear();
-                    ((EditText) findViewById(R.id.answer_edit_text)).setHint(q.getAnswer().replaceAll("[^-\\s/()]", "_"));
+                    ((EditText) findViewById(R.id.answer_edit_text)).setHint(q.getAnswer().replaceAll("[^-\\s]", "_ "));
                     ((TextView) findViewById(R.id.question_header_tv)).setText(getString(R.string.question, questions.size() + 1));
                     ((TextView) findViewById(R.id.question_tv)).setText(q.getQuestion());
                     ((TextView) findViewById(R.id.category_tv)).setText(getString(R.string.category, q.getCategory()));
@@ -160,6 +160,6 @@ public class QuizActivity extends AppCompatActivity {
 
         alert.backToMenu(this);
         // High score comes from DB
-        alert.showScores(question.getAnswer().replaceAll("/[^-\\sa-zA-Z0-9 ]/g", ""), score, "0");
+        alert.showScores(question.getAnswer().replaceAll("/[^-\\sa-zA-Z0-9 ]", ""), score, "0");
     }
 }

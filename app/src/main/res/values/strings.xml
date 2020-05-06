@@ -11,7 +11,7 @@
     <string name="high_scores">High Scores</string>
 
     <string name="credit_info">Developers: Daniel Davis, Dalton Claxton, Peyton White
-        \n\nSounds: Link here\n\nImages: Link here\n\nQuiz API: Link here
+        \n\nSound: https://patrickdearteaga.com/arcade-music/ \n\nQuiz API: https://jservice.io/
     </string>
     <string name="question">Question %1$d</string>
     <string name="answer">Answer</string>
