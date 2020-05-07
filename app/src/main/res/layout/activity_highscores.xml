@@ -106,11 +106,12 @@ tools:context="edu.apsu.csci.final_4020.activities.HighScoreActivity">
                 android:id="@+id/highscore_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:textSize="20sp" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="250dp" />
 
         </LinearLayout>
 

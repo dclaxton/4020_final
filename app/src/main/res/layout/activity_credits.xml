@@ -66,7 +66,7 @@
                     android:layout_height="200dp"
                     android:layout_marginBottom="20dp"
                     android:contentDescription="@string/quiz_logo"
-                    app:srcCompat="@drawable/questionmark" />
+                    app:srcCompat="@drawable/copyright" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -84,6 +84,10 @@
                     android:text="@string/credit_info"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="175dp" />
             </LinearLayout>
 
             <View

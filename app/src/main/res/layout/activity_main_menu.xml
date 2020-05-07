@@ -51,10 +51,10 @@
                 <ImageView
                     android:id="@+id/logo_image_view"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="152dp"
                     android:layout_marginBottom="20dp"
                     android:contentDescription="@string/quiz_logo"
-                    app:srcCompat="@drawable/questionmark" />
+                    app:srcCompat="@drawable/quizlogo" />
 
                 <RadioGroup
                     android:id="@+id/difficulty_rg"
