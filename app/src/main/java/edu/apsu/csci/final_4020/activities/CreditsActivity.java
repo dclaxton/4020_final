@@ -11,6 +11,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import edu.apsu.csci.final_4020.R;
+import edu.apsu.csci.final_4020.listeners.GoToActivityClosingPrevious;
 
 public class CreditsActivity extends AppCompatActivity {
     @Override
@@ -18,9 +19,6 @@ public class CreditsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credits);
 
-
-
-
-
+        findViewById(R.id.menu_button).setOnClickListener(new GoToActivityClosingPrevious(this, MenuActivity.class));
     }
 }
