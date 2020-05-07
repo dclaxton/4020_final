@@ -14,7 +14,7 @@ public class Question {
     private String answer;
     private String difficulty;
 
-    public Question(String difficulty, String question, String category, String answer, int id) {
+    Question(String difficulty, String question, String category, String answer, int id) {
         this.difficulty = difficulty;
         this.question = question;
         this.category = category;
@@ -44,25 +44,5 @@ public class Question {
 
     public int getID() {
         return id;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public void setDifficulty(String difficulty) {
-        this.difficulty = difficulty;
-    }
-
-    public void setID(int id) {
-        this.id = id;
     }
 }

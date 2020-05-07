@@ -9,7 +9,6 @@ package edu.apsu.csci.final_4020.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.RadioGroup;
 

@@ -11,9 +11,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
-import edu.apsu.csci.final_4020.activities.MenuActivity;
-import edu.apsu.csci.final_4020.listeners.GoToActivity;
-
 public class Alert {
     private AlertDialog.Builder aBuilder;
     private AlertDialog ad;

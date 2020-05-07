@@ -8,7 +8,6 @@ package edu.apsu.csci.final_4020.activities;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -28,16 +27,12 @@ import edu.apsu.csci.final_4020.listeners.GoToActivityClosingPrevious;
 public class QuizActivity extends AppCompatActivity {
     private Question question;
     private ArrayList<Question> questions;
-    private QueryJSON query;
-    private Alert alert;
 
     private DbDataSource dataSource;
     private int whichDifficulty;
 
     private Sound sound;
     private String difficulty;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,17 +109,26 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void startQuiz() {
-        query = new QueryJSON(getApplicationContext(), difficulty);
+        QueryJSON query = new QueryJSON(getApplicationContext(), difficulty);
         query.execute();
 
         query.setCallback(new QueryJSON.JSONCallBack() {
             @Override
             public void onResponse(Question q) {
                 if (q != null) {
+                    // If the wrong difficulty is selected, restart
                     if (!q.getDifficulty().equals(difficulty)) {
                         startQuiz();
                     } else {
+                        // If an already asked question is selected, restart
+                        for (Question oldQuestion : questions) {
+                            if (oldQuestion.getID() == q.getID()) {
+                                startQuiz();
+                            }
+                        }
+
                         question = q;
+
                         // Wipe the Edit Text, increment Question counter, display new Question, display new Category
                         ((EditText) findViewById(R.id.answer_edit_text)).getText().clear();
                         ((EditText) findViewById(R.id.answer_edit_text)).setHint(q.getAnswer().replaceAll("[^-\\s()\"]", "_ "));
@@ -141,7 +145,7 @@ public class QuizActivity extends AppCompatActivity {
         sound.stopMusic();
         sound.playSound(R.raw.game_over);
 
-        alert = new Alert(this);
+        Alert alert = new Alert(this);
         alert.setPositiveButton("Restart", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
@@ -154,7 +158,8 @@ public class QuizActivity extends AppCompatActivity {
         });
 
         alert.backToMenu(this);
-        //add to database
+
+        // Add to DB
         dataSource.insertHighscore(whichDifficulty,score);
 
         // High score comes from DB

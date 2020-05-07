@@ -52,7 +52,7 @@ tools:context="edu.apsu.csci.final_4020.activities.HighScoreActivity">
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight=".16" />
+                android:layout_weight=".3" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -118,7 +118,7 @@ tools:context="edu.apsu.csci.final_4020.activities.HighScoreActivity">
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight=".16" />
+                android:layout_weight=".3" />
         </LinearLayout>
     </ScrollView>
 

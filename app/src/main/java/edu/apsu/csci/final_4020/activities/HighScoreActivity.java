@@ -7,7 +7,6 @@
 package edu.apsu.csci.final_4020.activities;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.RadioGroup;
@@ -44,17 +43,12 @@ public class HighScoreActivity extends AppCompatActivity {
 
                 TextView tv = findViewById(R.id.highscore_tv);
 
-
-                if(highscores.size() == 0)
-                {
-                    tv.setText("No Highscores Avaiable");
-                }
-                else
-                {
+                if (highscores.size() == 0) {
+                    tv.setText("No Highscores Available!");
+                } else {
                     tv.setText("Top 10 Scores \n \n");
                     int count = 1;
-                    for(int i : highscores)
-                    {
+                    for (int i : highscores) {
                         tv.append(count + ": " + i + "\n");
                         count++;
                     }
@@ -62,9 +56,6 @@ public class HighScoreActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
 
 
     }
