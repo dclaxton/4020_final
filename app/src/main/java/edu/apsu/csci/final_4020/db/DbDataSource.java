@@ -35,11 +35,16 @@ public class DbDataSource {
         open();
 
         String columnName;
-        if (whichDifficulty == 1) {
+        if(whichDifficulty == 1)
+        {
             columnName = "easy";
-        } else if (whichDifficulty == 2) {
+        }
+        else if (whichDifficulty == 2)
+        {
             columnName = "normal";
-        } else {
+        }
+        else
+        {
             columnName = "hard";
         }
         List<Integer> highScores = new ArrayList<>();
@@ -57,17 +62,7 @@ public class DbDataSource {
         return highScores;
     }
 
-    private String[] getWhichColumns(int whichDifficulty) {
-        String[] c;
-        if (whichDifficulty == 1) {
-            c = new String[]{"easy"};
-        } else if (whichDifficulty == 2) {
-            c = new String[]{"normal"};
-        } else {
-            c = new String[]{"hard"};
-        }
-        return c;
-    }
+
 
     // Inserts highscore into DB
     public void insertHighscore(int whichDifficulty, int scoreRecorded) {
@@ -121,28 +116,34 @@ public class DbDataSource {
         return String.valueOf(highScore);
     }
 
-    public List<Integer> getTopHighscores(int whichDifficulty) {
+    public List<Integer> getTopHighscores(int whichDifficulty)
+    {
         List<Integer> highScores = getAllHighscores(whichDifficulty);
         List<Integer> highScoresTop10 = new ArrayList<>();
 
 
         int max = 10;
         int count = 0;
-        for (int high : highScores) {
-            if (count == max) {
+        for(int high : highScores)
+        {
+            if(count == max)
+            {
                 break;
             }
 
             //if highscore is not already in top 10 it add it to top 10 (rid of duplicates)
-            if (!(highScoresTop10.contains(high)) && high != 0) {
+            if(!(highScoresTop10.contains(high)) && high != 0) {
                 highScoresTop10.add(high);
             }
             count++;
 
         }
 
+
+
         return highScoresTop10;
     }
+
 
 }
 
