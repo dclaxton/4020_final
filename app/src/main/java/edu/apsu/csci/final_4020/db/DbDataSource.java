@@ -62,17 +62,7 @@ public class DbDataSource {
         return highScores;
     }
 
-    private String[] getWhichColumns(int whichDifficulty) {
-        String[] c;
-        if (whichDifficulty== 1) {
-            c = new String[]{"easy"};
-        } else if (whichDifficulty == 2) {
-            c = new String[]{"normal"};
-        } else {
-            c = new String[]{"hard"};
-        }
-        return c;
-    }
+
 
     // Inserts highscore into DB
     public void insertHighscore(int whichDifficulty, int scoreRecorded) {
