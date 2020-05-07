@@ -19,4 +19,7 @@
     <string name="submit">Submit</string>
     <string name="how_far_can_you_go">How far can you go?</string>
     <string name="category">Category: %1$s</string>
+    <string name="highscore_msg">High Scores!</string>
+    <string name="show_high_scores">Show High Scores</string>
+    <string name="credits_msg">Credits</string>
 </resources>

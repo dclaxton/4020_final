@@ -19,14 +19,26 @@
             android:layout_marginStart="8dp"
             android:layout_marginBottom="8dp"
             android:padding="10dp"
-            android:text="@string/welcome_msg"
+            android:text="@string/credits_msg"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/menu_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="4dp"
+            android:text="@string/menu"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.928"
+            app:layout_constraintStart_toEndOf="@+id/app_title_text_view" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
-        android:id="@+id/menu_scroll_view"
+        android:id="@+id/credits_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFD7D7">

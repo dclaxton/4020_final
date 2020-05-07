@@ -1,62 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context="edu.apsu.csci.final_4020.activities.HighScoreActivity">
+
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:padding="8dp">
 
-    <RadioGroup
-        android:id="@+id/difficulty_rg"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/app_title_text_view"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:padding="10dp"
+        android:text="@string/highscore_msg"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <RadioButton
-            android:id="@+id/easy_rb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/easy" />
-
-        <RadioButton
-            android:id="@+id/normal_rb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/normal" />
-
-        <RadioButton
-            android:id="@+id/hard_rb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/hard" />
-    </RadioGroup>
-
-    <ScrollView
-        android:id="@+id/scrollviewhighscore"
-        android:layout_width="405dp"
-        android:layout_height="541dp"
+    <Button
+        android:id="@+id/menu_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="4dp"
+        android:text="@string/menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/difficulty_rg">
+        app:layout_constraintHorizontal_bias="0.849"
+        app:layout_constraintStart_toEndOf="@+id/app_title_text_view" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+<ScrollView
+    android:id="@+id/highscore_scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#C6E8FF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight=".16" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".1"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textViewhighscore"
+            <ImageView
+                android:id="@+id/logo_image_view"
+                android:layout_width="match_parent"
+                android:layout_height="163dp"
+                android:layout_marginBottom="20dp"
+                android:contentDescription="@string/quiz_logo"
+                app:srcCompat="@drawable/highscore" />
+
+            <RadioGroup
+                android:id="@+id/difficulty_rg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Highscores"
-                android:textSize="30sp" />
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/easy_highscore_rb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/easy" />
+
+                <RadioButton
+                    android:id="@+id/normal_highscore_rb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/normal" />
+
+                <RadioButton
+                    android:id="@+id/hard__highscore_rb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/hard" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/show_highscore_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/show_high_scores" />
+
+            <TextView
+                android:id="@+id/highscore_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
         </LinearLayout>
-    </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight=".16" />
+    </LinearLayout>
+</ScrollView>
+
+</LinearLayout>

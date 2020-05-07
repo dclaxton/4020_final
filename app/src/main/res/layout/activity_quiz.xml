@@ -38,7 +38,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
-        android:id="@+id/menu_scroll_view"
+        android:id="@+id/quiz_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#C1FFD0">
