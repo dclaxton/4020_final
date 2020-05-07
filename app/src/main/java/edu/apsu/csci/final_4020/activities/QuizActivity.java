@@ -22,6 +22,7 @@ import edu.apsu.csci.final_4020.classes.Alert;
 import edu.apsu.csci.final_4020.classes.QueryJSON;
 import edu.apsu.csci.final_4020.classes.Question;
 import edu.apsu.csci.final_4020.classes.Sound;
+import edu.apsu.csci.final_4020.db.DbDataSource;
 import edu.apsu.csci.final_4020.listeners.GoToActivityClosingPrevious;
 
 public class QuizActivity extends AppCompatActivity {
@@ -30,8 +31,13 @@ public class QuizActivity extends AppCompatActivity {
     private QueryJSON query;
     private Alert alert;
 
+    private DbDataSource dataSource;
+    private int whichDifficulty;
+
     private Sound sound;
     private String difficulty;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,7 @@ public class QuizActivity extends AppCompatActivity {
 
         questions = new ArrayList<>();
         sound = new Sound(this);
+        dataSource = new DbDataSource(this);
 
         setDifficulty();
         startQuiz();
@@ -67,12 +74,15 @@ public class QuizActivity extends AppCompatActivity {
         switch (mode) {
             case R.id.easy_rb:
                 difficulty = "EASY";
+                whichDifficulty = 1;
                 break;
             case R.id.normal_rb:
                 difficulty = "NORMAL";
+                whichDifficulty = 2;
                 break;
             case R.id.hard_rb:
                 difficulty = "HARD";
+                whichDifficulty = 3;
                 break;
             default:
                 break;
@@ -144,7 +154,10 @@ public class QuizActivity extends AppCompatActivity {
         });
 
         alert.backToMenu(this);
+        //add to database
+        dataSource.insertHighscore(whichDifficulty,score);
+
         // High score comes from DB
-        alert.showScores(question.getAnswer().replaceAll("/[^-\\sa-zA-Z0-9 ]", ""), score, "0");
+        alert.showScores(question.getAnswer().replaceAll("/[^-\\sa-zA-Z0-9 ]", ""), score, dataSource.getHighscore(whichDifficulty));
     }
 }

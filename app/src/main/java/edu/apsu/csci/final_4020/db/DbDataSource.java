@@ -31,7 +31,7 @@ public class DbDataSource {
     }
 
     // Gets all Highscores
-    public List<Integer> getAllHighscores(int whichGame) {
+    public List<Integer> getAllHighscores(int whichDifficulty) {
         open();
 
         List<Integer> highScores = new ArrayList<>();
@@ -40,7 +40,7 @@ public class DbDataSource {
         cursor.moveToFirst();
 
         while (!cursor.isAfterLast()) {
-            Integer highscore = cursorToHighscore(cursor, whichGame);
+            Integer highscore = cursorToHighscore(cursor, whichDifficulty);
             highScores.add(highscore);
             cursor.moveToNext();
 
@@ -49,11 +49,11 @@ public class DbDataSource {
         return highScores;
     }
 
-    private String[] getWhichColumns(int whichGame) {
+    private String[] getWhichColumns(int whichDifficulty) {
         String[] c;
-        if (whichGame == 1) {
+        if (whichDifficulty== 1) {
             c = new String[]{"easy"};
-        } else if (whichGame == 2) {
+        } else if (whichDifficulty == 2) {
             c = new String[]{"normal"};
         } else {
             c = new String[]{"hard"};
@@ -62,11 +62,11 @@ public class DbDataSource {
     }
 
     // Inserts highscore into DB
-    public void insertHighscore(int whichGame, int scoreRecorded) {
+    public void insertHighscore(int whichDifficulty, int scoreRecorded) {
         ContentValues contentValues = new ContentValues();
-        if (whichGame == 1) {
+        if (whichDifficulty == 1) {
             contentValues.put(MySqlLiteHelper.HighscoreColumns.easy.toString(), scoreRecorded);
-        } else if (whichGame == 2) {
+        } else if (whichDifficulty == 2) {
             contentValues.put(MySqlLiteHelper.HighscoreColumns.normal.toString(), scoreRecorded);
 
         } else {
@@ -79,14 +79,14 @@ public class DbDataSource {
 
 
     //going to need updating
-    private Integer cursorToHighscore(Cursor cursor, int whichGame) {
+    private Integer cursorToHighscore(Cursor cursor, int whichDifficulty) {
 
         int highscore;
 
         //int scoreId = cursor.getInt(MySqlLiteHelper.HighscoreColumns.primary_key.ordinal());
-        if (whichGame == 1) {
+        if (whichDifficulty == 1) {
             highscore = cursor.getInt(MySqlLiteHelper.HighscoreColumns.easy.ordinal());
-        } else if (whichGame == 2) {
+        } else if (whichDifficulty == 2) {
             highscore = cursor.getInt(MySqlLiteHelper.HighscoreColumns.normal.ordinal());
         } else {
             highscore = cursor.getInt(MySqlLiteHelper.HighscoreColumns.hard.ordinal());
@@ -94,14 +94,13 @@ public class DbDataSource {
 
         Integer highScore = new Integer(highscore);
 
-        //String dateStr = cursor.getString(MySqlLiteHelper.HighscoreColumns.date_created.ordinal());
 
         return highScore;
     }
 
     //this is for the endgame alert dialog
-    public String getHighscore(int whichGame) {
-        List<Integer> highScores = getAllHighscores(whichGame);
+    public String getHighscore(int whichDifficulty) {
+        List<Integer> highScores = getAllHighscores(whichDifficulty);
         int highScore = highScores.get(0);
 
         for (int i : highScores) {
