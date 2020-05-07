@@ -43,10 +43,22 @@ public class HighScoreActivity extends AppCompatActivity {
                 List<Integer> highscores = dataSource.getTopHighscores(whichDifficulty);
 
                 TextView tv = findViewById(R.id.highscore_tv);
-                tv.setText("");
-                for(int i : highscores)
+
+
+                if(highscores.size() == 0)
                 {
-                    tv.append(i + "\n");
+                    tv.setText("No Highscores Avaiable");
+                }
+                else
+                {
+                    tv.setText("Top 10 Scores \n \n");
+                    int count = 1;
+                    for(int i : highscores)
+                    {
+                        tv.append(count + ": " + i + "\n");
+                        count++;
+                    }
+
                 }
             }
         });

@@ -142,7 +142,7 @@ public class DbDataSource {
             }
 
             //if highscore is not already in top 10 it add it to top 10 (rid of duplicates)
-            if(!highScoresTop10.contains(high)) {
+            if(!(highScoresTop10.contains(high)) && high != 0) {
                 highScoresTop10.add(high);
             }
             count++;
