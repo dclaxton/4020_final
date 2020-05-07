@@ -34,9 +34,22 @@ public class DbDataSource {
     public List<Integer> getAllHighscores(int whichDifficulty) {
         open();
 
+        String columnName;
+        if(whichDifficulty == 1)
+        {
+            columnName = "easy";
+        }
+        else if (whichDifficulty == 2)
+        {
+            columnName = "normal";
+        }
+        else
+        {
+            columnName = "hard";
+        }
         List<Integer> highScores = new ArrayList<>();
-        String[] columns = MySqlLiteHelper.HighscoreColumns.names(); //getWhichColumns(whichGame); //MySqlLiteHelper.HighscoreColumns.names();
-        Cursor cursor = database.query(MySqlLiteHelper.DATA_TABLE, columns, null, null, null, null, null);
+        String[] columns = MySqlLiteHelper.HighscoreColumns.names();
+        Cursor cursor = database.query(MySqlLiteHelper.DATA_TABLE, columns, null, null, null, null, columnName + " DESC");
         cursor.moveToFirst();
 
         while (!cursor.isAfterLast()) {
@@ -111,6 +124,34 @@ public class DbDataSource {
         }
 
         return String.valueOf(highScore);
+    }
+
+    public List<Integer> getTopHighscores(int whichDifficulty)
+    {
+        List<Integer> highScores = getAllHighscores(whichDifficulty);
+        List<Integer> highScoresTop10 = new ArrayList<>();
+
+
+        int max = 10;
+        int count = 0;
+        for(int high : highScores)
+        {
+            if(count == max)
+            {
+                break;
+            }
+
+            //if highscore is not already in top 10 it add it to top 10 (rid of duplicates)
+            if(!highScoresTop10.contains(high)) {
+                highScoresTop10.add(high);
+            }
+            count++;
+
+        }
+
+
+
+        return highScoresTop10;
     }
 
 
